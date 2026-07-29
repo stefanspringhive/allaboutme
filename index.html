@@ -198,7 +198,9 @@ nav{display:flex;align-items:center;justify-content:space-between;}
 .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;}
 .about-visual{position:relative;}
 .about-card{
-  background:linear-gradient(160deg,var(--primary),var(--secondary));
+  background:
+    linear-gradient(160deg,rgba(15,23,42,0.88),rgba(30,41,59,0.93)),
+    url('https://images.unsplash.com/photo-1751257983922-a627088d4c21?auto=format&fit=crop&w=900&q=70') center/cover;
   border-radius:var(--radius-lg);padding:38px;color:#fff;box-shadow:var(--shadow-lg);
   position:relative;overflow:hidden;
 }
@@ -279,17 +281,23 @@ nav{display:flex;align-items:center;justify-content:space-between;}
 }
 .project-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
 .project-thumb{
-  height:190px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  height:190px;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:flex-start;
+  background-size:cover;background-position:center;transition:transform .6s var(--ease);
 }
-.project-thumb svg{width:56px;height:56px;color:rgba(255,255,255,0.85);position:relative;z-index:1;transition:transform .5s var(--ease);}
-.project-card:hover .project-thumb svg{transform:scale(1.12);}
-.project-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,0.05),rgba(0,0,0,0.18));}
-.t-corp{background:linear-gradient(135deg,#0F172A,#334155);}
-.t-health{background:linear-gradient(135deg,#0EA5A0,#38BDF8);}
-.t-home{background:linear-gradient(135deg,#F59E0B,#FBBF24);}
-.t-ins{background:linear-gradient(135deg,#2563EB,#1E293B);}
-.t-con{background:linear-gradient(135deg,#EA580C,#F59E0B);}
-.t-biz{background:linear-gradient(135deg,#7C3AED,#2563EB);}
+.project-card:hover .project-thumb{transform:scale(1.06);}
+.project-thumb .thumb-badge{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.16);
+  border:1px solid rgba(255,255,255,0.3);backdrop-filter:blur(6px);margin:16px;
+}
+.project-thumb .thumb-badge svg{width:18px;height:18px;color:#fff;}
+.project-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0.15) 0%,rgba(15,23,42,0.55) 100%);}
+.t-corp{background-image:linear-gradient(160deg,rgba(15,23,42,.55),rgba(30,41,59,.65)),url('https://images.unsplash.com/photo-1745015446589-7ee6f702d8c1?auto=format&fit=crop&w=800&q=70');}
+.t-health{background-image:linear-gradient(160deg,rgba(14,116,144,.45),rgba(37,99,235,.5)),url('https://images.unsplash.com/photo-1758691461957-474a7686e388?auto=format&fit=crop&w=800&q=70');}
+.t-home{background-image:linear-gradient(160deg,rgba(120,53,15,.35),rgba(217,119,6,.45)),url('https://images.unsplash.com/photo-1543333995-a78aea2eee50?auto=format&fit=crop&w=800&q=70');}
+.t-ins{background-image:linear-gradient(160deg,rgba(15,23,42,.55),rgba(37,99,235,.55)),url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=800&q=70');}
+.t-con{background-image:linear-gradient(160deg,rgba(124,45,18,.45),rgba(217,119,6,.5)),url('https://images.unsplash.com/photo-1758876734777-dcc6981f3671?auto=format&fit=crop&w=800&q=70');}
+.t-biz{background-image:linear-gradient(160deg,rgba(15,23,42,.55),rgba(124,58,237,.45)),url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=70');}
 .project-body{padding:22px 24px 24px;}
 .project-body h4{font-size:17px;margin-bottom:6px;}
 .project-body p{font-size:14px;color:var(--muted);margin-bottom:14px;}
@@ -928,7 +936,7 @@ projects.forEach(([title,desc,cls,tech,icon])=>{
   const card = document.createElement('div');
   card.className='project-card';
   card.innerHTML = `
-    <div class="project-thumb ${cls}"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div>
+    <div class="project-thumb ${cls}"><span class="thumb-badge"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></span></div>
     <div class="project-body">
       <h4>${title}</h4>
       <p>${desc}</p>
